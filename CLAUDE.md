@@ -47,6 +47,7 @@ Claude has no memory between sessions by default. This repo fixes that with plai
 - **Propose before restructuring.** Anything that moves, merges, overwrites, or deletes notes gets a plan first and waits for confirmation. Append or ask; never silently overwrite.
 - **Cite what you ingested.** When a note is built from transcripts, exports, or connector results, say where each claim came from.
 - **Never invent** statistics, quotes, sources, or case studies. Say when something is unverified.
+- **Write inside `.claude/` with the shell.** Memory, skills and commands live there. In Cowork the file-edit tools cannot write inside `.claude/`, but the shell can once it has started, so use a heredoc. If the shell is not ready, wait and retry. Never save memory anywhere except `.claude/memory/`.
 - **Secrets stay out of git.** API keys and tokens live only in `.claude/settings.local.json` or `.env`, both gitignored. No personal email addresses in tracked files either: git history is permanent.
 
 ---
@@ -93,7 +94,7 @@ Configured in `.claude/settings.json`, scripts in `.claude/hooks/`. They need `j
 | Tool | Commands | Hooks and automatic daily logs |
 |---|---|---|
 | Claude Code (VS Code extension or terminal) | Type `/start`, `/shutdown`, and so on | Yes |
-| Cowork (Claude desktop app) | Ask in plain words: "Run the shutdown command from `.claude/commands/shutdown.md`" | Not guaranteed. Run `/shutdown` (by asking) at the end of each day, so the log is written |
+| Cowork (Claude desktop app) | Ask in plain words: "Run the shutdown command from `.claude/commands/shutdown.md`" | No. Cowork runs hooks in its own workspace, where this folder isn't. Read the newest daily logs at the start of a session, and run `/shutdown` (by asking) at the end of each day |
 
 ## GitHub is optional
 

@@ -53,11 +53,15 @@ trap 'rmdir "$lock" 2>/dev/null' EXIT
 index="$(
   for f in "$txdir"/*.jsonl; do
     [ -f "$f" ] || continue
-    jq -r 'select(.timestamp) | .timestamp' "$f" 2>/dev/null \
-      | sort \
-      | awk -v tab="$TAB" -v file="$f" '
-          { d = substr($0, 1, 10) }
-          d != prev { print d tab $0 tab file; prev = d }
+    # Transcript timestamps are UTC. Days are local days, the same clock as
+    # today, or a late-evening session is filed under tomorrow. Where jq cannot
+    # parse dates (some Windows builds), localday falls back to the UTC day.
+    # No apostrophes in this comment: macOS bash 3.2 misparses them in here.
+    jq -r 'def localday: (.timestamp // "") as $t | if $t == "" then "" else (try ($t | sub("\\.[0-9]+"; "") | fromdateiso8601 | strflocaltime("%Y-%m-%d")) catch $t[0:10]) end; select(.timestamp) | "\(localday)\t\(.timestamp)"' "$f" 2>/dev/null \
+      | tr -d '\r' \
+      | sort -t "$TAB" -k2,2 \
+      | awk -F"$TAB" -v tab="$TAB" -v file="$f" '
+          $1 != "" && $1 != prev { print $1 tab $2 tab file; prev = $1 }
         '
   done | sort -t "$TAB" -k2,2
 )"
@@ -101,7 +105,8 @@ while IFS= read -r d; do
     # at all, which reads on disk exactly like a day where nothing happened.
     printf '%s\n' "$index" | awk -F"$TAB" -v dd="$d" '$1==dd {print $3}' | while IFS= read -r f; do
       jq -c --arg dd "$d" --argjson cap "$LOG_STR_CAP" '
-        select((.timestamp // "") | startswith($dd))
+        def localday: (.timestamp // "") as $t | if $t == "" then "" else (try ($t | sub("\\.[0-9]+"; "") | fromdateiso8601 | strflocaltime("%Y-%m-%d")) catch $t[0:10]) end;
+        select(localday == $dd)
         | walk(if type == "string" and (length > $cap) then .[0:$cap] + "…[truncated]" else . end)
       ' "$f" 2>/dev/null
     done

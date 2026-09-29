@@ -30,8 +30,10 @@ trap 'rm -f "$slice"' EXIT
 if command -v jq >/dev/null 2>&1; then
   # Long strings are truncated for the same reason the catch-up hook truncates:
   # a heavy day can overflow the model's context, and a failed run writes no log.
+  # Timestamps are UTC; $today is the local day, so compare local to local.
   jq -c --arg d "$today" --argjson cap "$LOG_STR_CAP" '
-    select((.timestamp // "") | startswith($d))
+    def localday: (.timestamp // "") as $t | if $t == "" then "" else (try ($t | sub("\\.[0-9]+"; "") | fromdateiso8601 | strflocaltime("%Y-%m-%d")) catch $t[0:10]) end;
+    select(localday == $d)
     | walk(if type == "string" and (length > $cap) then .[0:$cap] + "…[truncated]" else . end)
   ' "$transcript" > "$slice" 2>/dev/null
   # Nothing today means every message belongs to an earlier day (a session
