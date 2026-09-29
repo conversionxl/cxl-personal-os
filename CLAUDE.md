@@ -34,6 +34,7 @@ Claude has no memory between sessions by default. This repo fixes that with plai
 | `wiki/` | Durable reference: people, tools, concepts, glossary. Facts that stay true for months. |
 | `drafts/` | Content in progress. Anything Claude writes for you lands here first. |
 | `team-updates/` | Weekly standup-style updates built from your daily logs. |
+| `AGENTS.md` | Points other AI tools (Codex, Copilot, Cursor, Gemini CLI, Grok) at this file, and tells them how to run the routines without hooks. |
 | `.claude/commands/` | Slash commands: repeatable prompts you trigger by name. |
 | `.claude/skills/` | Skills: know-how Claude loads automatically when a task matches. |
 | `.claude/agents/` | Agents: specialists Claude hands a whole job to. |
