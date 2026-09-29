@@ -147,5 +147,10 @@ detach() {
 }
 
 claude_bin() {
-  command -v claude 2>/dev/null || { [ -x "$HOME/.local/bin/claude" ] && echo "$HOME/.local/bin/claude"; }
+  command -v claude 2>/dev/null && return
+  # Native installer location; on Windows the binary is claude.exe.
+  for c in "$HOME/.local/bin/claude" "$HOME/.local/bin/claude.exe"; do
+    [ -x "$c" ] && { echo "$c"; return; }
+  done
+  return 1
 }

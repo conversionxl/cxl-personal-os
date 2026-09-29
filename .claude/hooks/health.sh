@@ -13,7 +13,7 @@ cat >/dev/null
 
 missing=""
 command -v jq >/dev/null 2>&1 || missing="$missing jq"
-command -v claude >/dev/null 2>&1 || [ -x "$HOME/.local/bin/claude" ] || missing="$missing claude-cli"
+command -v claude >/dev/null 2>&1 || [ -x "$HOME/.local/bin/claude" ] || [ -x "$HOME/.local/bin/claude.exe" ] || missing="$missing claude-cli"
 
 mkdir -p "$CLAUDE_PROJECT_DIR/.claude/state" 2>/dev/null
 printf 'last_run=%s\nos=%s\nmissing=%s\n' "$(date +%F)" "$(uname -s 2>/dev/null)" "${missing# }" \

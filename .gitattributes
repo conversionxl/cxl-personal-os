@@ -1,0 +1,5 @@
+# Hooks are bash. Git for Windows checks files out with CRLF by default, and a
+# script with CRLF line endings fails in bash. Keep these LF on every machine.
+*.sh text eol=lf
+*.json text eol=lf
+*.md text eol=lf
