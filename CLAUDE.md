@@ -99,11 +99,11 @@ Configured in `.claude/settings.json`, scripts in `.claude/hooks/`. They need `j
 
 ## GitHub is optional
 
-Without GitHub (a ZIP download, or a folder you never push), everything in this repo still works on one machine. What you give up: version history (no undoing a bad edit to a project file or memory), sync across machines, template updates from CXL, and the more complex setups later in the cohort that build on git, such as shared team repos and pull-request reviews. You can add GitHub later: `git init`, create a private repo, and push.
+Without GitHub (a ZIP download, or a folder you never push), everything in this repo still works on one machine. What you give up: version history (no undoing a bad edit to a project file or memory), sync across machines, template updates from CXL, and the more complex setups later in the cohort that build on git, such as shared team repos and pull-request reviews. You can add GitHub later: ask Claude to put the folder on GitHub as a new private repo.
 
 ## Memory
 
-Memory lives in the repo at `.claude/memory/`, indexed by `MEMORY.md`. Claude Code looks for memory at `~/.claude/projects/<slugified-repo-path>/memory/`, outside the repo. `bash .claude/link-memory.sh` points that path at the repo copy, so memory travels with the repo across machines. **Run it once on every machine you clone to.** Without it, memory silently stays machine-local.
+Memory lives in the repo at `.claude/memory/`, indexed by `MEMORY.md`. Claude Code looks for memory at `~/.claude/projects/<slugified-repo-path>/memory/`, outside the repo. `bash .claude/link-memory.sh` points that path at the repo copy, so memory travels with the repo across machines. `/start` runs it for you: **run `/start` once on every machine you clone to.** Without it, memory silently stays machine-local.
 
 Index lines in `MEMORY.md` use a colon as the separator: `- [Title](file.md): hook`. Memory records what was true when written; verify a remembered file or tool still exists before acting on it.
 

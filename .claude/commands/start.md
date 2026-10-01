@@ -25,10 +25,10 @@ Run these checks and show the result as one table (item | status | fix if missin
 
 **Detect the OS first** (`uname -s`, or `$env:OS` / `ver` if bash is not available). On Windows, also check:
 - **Git Bash**: `where bash` or `command -v bash`. Claude Code on Windows needs Git for Windows, and every hook is a bash script. Install: `winget install Git.Git`.
-- **jq on the PATH that Git Bash sees**: `bash -c "command -v jq"`. Install: `winget install jqlang.jq`. winget adds it to PATH only for new processes, so **fully quit and reopen VS Code** afterwards, then re-run `/start`.
+- **jq on the PATH that Git Bash sees**: `bash -c "command -v jq"`. Install: `winget install jqlang.jq`. winget adds it to PATH only for new processes, so the user must **fully quit and reopen the app they run Claude in** (VS Code or the Claude desktop app) afterwards, then re-run `/start`.
 - If `winget` itself is missing (older Windows or a locked-down work laptop), give the manual route: download `jq-windows-amd64.exe` from https://jqlang.org/download/, rename it `jq.exe`, and put it in `C:\Program Files\Git\usr\bin`.
 
-Install hints for anything missing: macOS `brew install jq gh`; Windows `winget install jqlang.jq GitHub.cli`; Linux via the package manager.
+Install commands for anything missing (step 2 runs them): macOS `brew install jq gh`; Windows `winget install jqlang.jq GitHub.cli`; Linux via the package manager. The `claude` CLI: macOS and Linux `curl -fsSL https://claude.ai/install.sh | bash`; Windows PowerShell `irm https://claude.ai/install.ps1 | iex`. The desktop app and the VS Code extension do not always put `claude` on the PATH, so check it even when Claude is clearly running.
 
 ## 2. Fix what you can
 
@@ -39,7 +39,8 @@ Install hints for anything missing: macOS `brew install jq gh`; Windows `winget 
   ```
   (After `git remote remove origin`. If they don't use `gh`, give the manual steps: create an empty private repo on GitHub, then `git remote set-url origin <url>` and `git push -u origin main`.)
 - If they downloaded a ZIP or do not want GitHub, that is fine: everything works on one machine. Say in two lines what they give up (version history, sync across machines, template updates, and the git-based setups later in the cohort) and that they can add it later. Do not push them.
-- Anything you cannot fix (a missing install), list it once with the command to run, and continue.
+- **Install what is missing yourself.** The user should not need a terminal. List the missing tools with the command for each, ask once, and on a yes run the commands with the shell and show the result. On Windows, then tell them to fully quit and reopen the app and run `/start` again.
+- **What you cannot do from here:** an install that needs an admin password (`sudo`) or Homebrew when it is not installed (point to https://brew.sh or the jq download page), and signing `gh` in to GitHub, which is interactive. For `gh`, say it is optional: `/shutdown` can push with plain `git`, and GitHub Desktop does the same with no terminal. List anything left once, and continue.
 
 **If the hooks are not running and cannot be fixed now** (no admin rights, a locked-down laptop), switch the user to the manual fallback and say so plainly:
 - Daily logs will not write themselves. Run `/shutdown` at the end of every session; it writes the log without hooks.
