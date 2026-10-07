@@ -46,6 +46,7 @@ Claude has no memory between sessions by default. This repo fixes that with plai
 - **Project frontmatter:** every project file carries `type`, `status`, `priority`, `cadence`, `next_action`, and `tags`. `/lint` uses `cadence` to decide whether a project has gone quiet.
 - **Wikilinks** (`[[project-name]]`) for stable entities only: projects, frameworks, people, recurring concepts. Not generic words. Never link to a note that does not exist.
 - **Propose before restructuring.** Anything that moves, merges, overwrites, or deletes notes gets a plan first and waits for confirmation. Append or ask; never silently overwrite.
+- **Your own folder names.** If `.claude/folders.json` exists, it maps the standard folders in this file to names you already use (for example `projects` to `PROJECTS`, `wiki` to `Resources`). Every command, skill and agent uses the mapped folder wherever it names a standard one, subfolders included. `/start` sets it up and `/lint` checks it. `CLAUDE.md`, `AGENTS.md` and `.claude/` never move.
 - **Cite what you ingested.** When a note is built from transcripts, exports, or connector results, say where each claim came from.
 - **Never invent** statistics, quotes, sources, or case studies. Say when something is unverified.
 - **Write inside `.claude/` with the shell.** Memory, skills and commands live there. In Cowork the file-edit tools cannot write inside `.claude/`, but the shell can once it has started, so use a heredoc. If the shell is not ready, wait and retry. Never save memory anywhere except `.claude/memory/`.
@@ -61,7 +62,7 @@ Claude has no memory between sessions by default. This repo fixes that with plai
 | `/brief [person\|project\|topic]` | Before a meeting or a context switch. | Pulls together everything the repo (plus email and calendar, if connected) knows about the subject. |
 | `/ingest` | When `raw/` has things in it. | Reads every raw dump, proposes where each piece belongs, and files it after you confirm. |
 | `/shutdown` | End of the working day. | Reconciles what got done, routes new commitments into project files, writes a rich daily log, offers to push to GitHub. |
-| `/lint` | Weekly. A reminder appears at session start when it is overdue. | Health check: contradictions, stale claims, orphan notes, missing concepts, neglected projects, unsourced claims. Reports first, fixes on confirmation. |
+| `/lint` | Weekly. A reminder appears at session start when it is overdue. | Health check: contradictions, stale claims, orphan notes, missing concepts, neglected projects, unsourced claims, folder-map drift, loose and temp files, and a folder cleanup plan. Reports first, fixes on confirmation. |
 | `/team-update [this-week\|last-week\|today]` | When you owe someone a status update. | Turns your daily logs into a short standup update in `team-updates/`. |
 
 ---

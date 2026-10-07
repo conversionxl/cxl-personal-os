@@ -67,7 +67,7 @@ team-updates/      Weekly standup updates built from your logs
 | `/brief <subject>` | Before a meeting or context switch | Everything the repo (plus email and calendar, if connected) knows about a person, project, or topic |
 | `/ingest` | When `raw/` fills up | Proposes where each raw dump belongs and files it after you confirm |
 | `/shutdown` | End of day | Reconciles the day, routes commitments into projects, writes a rich daily log, offers to push |
-| `/lint` | Weekly | Health check: contradictions, stale claims, orphans, missing concepts, neglected projects, unsourced claims |
+| `/lint` | Weekly | Health check: contradictions, stale claims, orphans, missing concepts, neglected projects, unsourced claims, folder-map drift, loose and temp files, and a folder cleanup plan |
 | `/team-update <period>` | When you owe a status update | Standup-format update from your daily logs |
 
 ## What runs automatically
@@ -87,6 +87,10 @@ team-updates/      Weekly standup updates built from your logs
 | Answers | "What is always true?" | "Where did we leave off?" |
 
 Both are plain files in your repo. You can read them, fix them, and take them with you.
+
+## Already have your own folders?
+
+Keep them. Copy them into the repo, then run `/start`: it asks whether to reroute the personal OS to the folders you already use (say `PROJECTS/` for projects and `Resources/` for the wiki) and saves your answer in `.claude/folders.json`. Every hook, command, skill and agent then uses your folder names, and local-only folders stay out of git under their new names. Nothing moves unless you say so. `CLAUDE.md`, `AGENTS.md` and `.claude/` stay where they are.
 
 ## Working across machines
 
