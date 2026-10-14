@@ -38,7 +38,7 @@ Install hints for anything missing: macOS `brew install jq gh`; Windows `winget 
   gh repo create <name> --private --source . --remote origin --push
   ```
   (After `git remote remove origin`. If they don't use `gh`, give the manual steps: create an empty private repo on GitHub, then `git remote set-url origin <url>` and `git push -u origin main`.)
-- If they downloaded a ZIP or do not want GitHub, that is fine: everything works on one machine. Say in two lines what they give up (version history, sync across machines, template updates, and the git-based setups later in the cohort) and that they can add it later. Do not push them.
+- If they downloaded a ZIP or do not want GitHub, that is fine: everything works on one machine. Say in two lines what they give up (version history, sync across machines, and the git-based setups later in the cohort; `/update` still brings in CXL's template updates) and that they can add it later. Do not push them.
 - Anything you cannot fix (a missing install), list it once with the command to run, and continue.
 
 **If the hooks are not running and cannot be fixed now** (no admin rights, a locked-down laptop), switch the user to the manual fallback and say so plainly:

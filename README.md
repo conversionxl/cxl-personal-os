@@ -114,7 +114,6 @@ Fine to start without it. On one machine, every folder, command, and daily log w
 
 - **Version history.** No way to see or undo what changed in a project file, memory, or `CLAUDE.md`.
 - **Sync across machines.** Your laptop and desktop drift apart.
-- **Template updates** from CXL as the starter improves.
 - **The more complex setups later in the cohort** that build on git: shared team repos, pull-request reviews, automated team updates.
 
 You can add it any time: create an empty private repo on GitHub, then `git init`, `git add -A`, `git commit -m "Start"`, `git remote add origin <url>`, `git push -u origin main`.
