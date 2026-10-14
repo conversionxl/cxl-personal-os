@@ -4,6 +4,18 @@ A starter repo that gives Claude Code a working memory of your job. Built for th
 
 Claude starts every session knowing nothing about the last one. This repo fixes that with plain Markdown files you own: a daily log written automatically at the end of every session, project files that hold the state of your work, and a handful of commands for the daily and weekly loop. Open it in Obsidian and it is also a linked second brain.
 
+## This repo or the plugin: pick one
+
+There are two routes to the same personal OS. Use **one per folder**.
+
+| | The [personal-os plugin](https://github.com/conversionxl/cxl-personal-os-plugins) (recommended) | This starter repo |
+|---|---|---|
+| What you get | The commands and hooks, installed into Claude from **Settings → Plugins** | Your own copy of every file, to open in VS Code or a terminal |
+| Your work lives in | An empty folder of your own, set up with `/personal-os:setup` | Your private copy of this repo |
+| Pick it if | You want the simplest setup, or use Cowork or the desktop app | You want to edit the commands and hooks yourself and version everything in git |
+
+**Don't mix them in one folder.** This repo already has the hooks, so running `/personal-os:setup` in a copy of it as well makes every hook run twice: two daily logs for every session. And the plugin is installed from **Settings → Plugins** in Claude, never by downloading its repository: see [its README](https://github.com/conversionxl/cxl-personal-os-plugins#this-repository-is-the-plugin-not-your-folder).
+
 ## Set up (10 minutes)
 
 **1. Make your own private copy.** Your logs and projects are private, so do not work in a public fork. (No GitHub? Click **Code → Download ZIP** and unzip it. Everything works on one machine; see [Without GitHub](#without-github).)
