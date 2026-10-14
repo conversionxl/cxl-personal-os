@@ -10,11 +10,11 @@ There are two routes to the same personal OS. Use **one per folder**.
 
 | | The [personal-os plugin](https://github.com/conversionxl/cxl-personal-os-plugins) (recommended) | This starter repo |
 |---|---|---|
-| What you get | The commands and hooks, installed into Claude from **Customize** | Your own copy of every file, to open in VS Code or a terminal |
+| What you get | The commands and hooks, installed into Claude from **Settings → Plugins** | Your own copy of every file, to open in VS Code or a terminal |
 | Your work lives in | An empty folder of your own, set up with `/personal-os:setup` | Your private copy of this repo |
 | Pick it if | You want the simplest setup, or use Cowork or the desktop app | You want to edit the commands and hooks yourself and version everything in git |
 
-**Don't mix them in one folder.** This repo already has the hooks, so running `/personal-os:setup` in a copy of it as well makes every hook run twice: two daily logs for every session. And the plugin is installed from **Customize** in Claude, never by downloading its repository: see [its README](https://github.com/conversionxl/cxl-personal-os-plugins#this-repository-is-the-plugin-not-your-folder).
+**Don't mix them in one folder.** This repo already has the hooks, so running `/personal-os:setup` in a copy of it as well makes every hook run twice: two daily logs for every session. And the plugin is installed from **Settings → Plugins** in Claude, never by downloading its repository: see [its README](https://github.com/conversionxl/cxl-personal-os-plugins#this-repository-is-the-plugin-not-your-folder).
 
 ## Set up (10 minutes)
 
