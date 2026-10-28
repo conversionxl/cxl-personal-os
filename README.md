@@ -82,6 +82,18 @@ team-updates/      Weekly standup updates built from your logs
 | `/lint` | Weekly | Health check: contradictions, stale claims, orphans, missing concepts, neglected projects, unsourced claims, folder-map drift, loose and temp files, and a folder cleanup plan |
 | `/team-update <period>` | When you owe a status update | Standup-format update from your daily logs |
 
+## AI visibility builds
+
+Guided setup for the AI visibility workshop. They live in `.claude/commands/`. Each one coaches you one step at a time, from an empty folder to a report and a re-run command of your own.
+
+| Command | What it builds |
+|---|---|
+| `/aeo-qualitybuild-instructions` | Build 1, quality: does AI get your company right? A fact sheet, a brand accuracy report, and `/answer-quality` |
+| `/aeo-goingdeep-instructions` | Build 2, going deep: a weekly n8n tracker of how often AI names you, and `/going-deep` |
+| `/aeo-goingwide-instructions` | Build 3, going wide: up to 1,000 questions from Search Console, who AI names instead, and `/going-wide` |
+| `/aeo-baseline-instructions` | Build 4, baseline: what AI traffic is worth, from GA4 and Search Console, and `/baseline` |
+| `/aeo-canonical-instructions` | Fix the sources: one canonical description of your company, an audit of your site, a swap sheet, a profile checklist for social and third-party listings, and `/canonical-check`. Run it after the quality build |
+
 ## What runs automatically
 
 | When | What |
